@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import {
   FormControl,
   FormLabel,
@@ -26,7 +27,7 @@ const ImageUpload = () => {
 
   const onChangeFile = (e) => {
     setImage(e.target.files[0]);
-  }
+  } 
 
 
   const changeOnClick = (e) =>{
@@ -50,18 +51,18 @@ const ImageUpload = () => {
 
   axios.post('http://localhost:8000/uploadImage',formData)
   .then((res)=>{
-    console.log(res);
-    Navigate('/uploadimage');
+    console.log(res)
+    alert("image has been uloaded succesfully");
+    Navigate('/');
   }).catch((err)=>{
     console.log(err);
   })
   }
-  
 
   return (
     <Wrapper>
     <><Heading margin={'5'} textAlign={'center'}>Upload Image</Heading>
-    <form action="" method='POST' encType='multipart/form-data' onSubmit={changeOnClick}>
+    <form action="" method='POST' encType='multipart/form-data'   onSubmit={changeOnClick} >
       <FormControl display={'grid'} alignItems={'center'} justifyContent={'center'}>
         <Input type='hidden' value={''} name='id'/>
         <FormLabel>Title</FormLabel>
@@ -88,6 +89,7 @@ const ImageUpload = () => {
           mt={4}
           colorScheme='teal'
           type='submit'
+        
         >
           Upload Image
         </Button>
