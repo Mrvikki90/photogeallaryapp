@@ -38,7 +38,7 @@ const SignUp = () => {
     console.log(result);
     if(result){
       alert("Rigestration succesfully completed");
-      Navigate('/ImageUpload');
+      Navigate('/');
     }else{
       alert("enter credentails");
     }}

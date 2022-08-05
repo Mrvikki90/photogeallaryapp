@@ -17,11 +17,17 @@ const Nav = () => {
  </Flex>
 
  <Flex  alignItems='center' padding={'10'} justifyContent={'space-between'} >
- {  auth ? <> 
+ {  auth ?
+    <>
+  <Flex display="flex" justifyContent='space-between' padding={'20'}>
+  <Link to={'/private'}>privateImages</Link>
+  <Flex marginLeft="20"></Flex>
   <Link to={'/uploadimage'}>Upload Image </Link>
+  </Flex> 
   <Link onClick={logout}  to={'/'}><Button colorScheme='pink' variant='solid'>
     Logout
-  </Button> </Link> 
+  </Button> </Link>
+  
     </>
     :
     <>
