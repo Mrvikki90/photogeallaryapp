@@ -37,24 +37,23 @@ interface data {
   email : string,
   name : string,
   password : string,
-  _id : string
 }
 
   const handleLogin = async () =>{
-    let result = await fetch("http://localhost:8000/login",{
+    let result= await fetch("http://localhost:8000/login",{
       method : "POST",
       body : JSON.stringify({email,password}),
       headers : {
         "Content-type" : "application/json"
       },
     })
-    //console.log(result);
-    result = await result.json();
-    let userData =  (result as unknown as data);
-    if(userData._id){
-      localStorage.setItem('user', JSON.stringify(result));
-      Navigate('/uploadimage');
 
+    const res:data[]  = await result.json();
+    console.log(res.length);
+    if(res.length){
+      localStorage.setItem('user', JSON.stringify(result));
+      alert("Login Succesfully");
+      Navigate('/uploadimage');
     }else{
       alert("wrong credentails");
     }
@@ -77,7 +76,8 @@ interface data {
           variant="filled"
           mb={3}
           onChange = {(e: { target: { value: React.SetStateAction<string>; }; })=>setEmail(e.target.value)}
-        />
+          />
+
         <Input
           placeholder="Enter Your Password"
           type="password"
